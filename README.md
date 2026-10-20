@@ -169,77 +169,23 @@ They contain no photo and no body.
 
 ## Citations
 
-```bibtex
-@inproceedings{nam2025declo,
-  title     = {DeClotH: Decomposable 3D Cloth and Human Body Reconstruction from a Single Image},
-  author    = {Nam, Hyeongjin and Kim, Donghwan and Oh, Jeongtaek and Lee, Kyoung Mu},
-  booktitle = {CVPR}, year = {2025}}
-@inproceedings{pavlakos2019smplx,
-  title     = {Expressive Body Capture: 3D Hands, Face, and Body from a Single Image},
-  author    = {Pavlakos, Georgios and Choutas, Vasileios and Ghorbani, Nima and Bolkart, Timo and Osman, Ahmed A. A. and Tzionas, Dimitrios and Black, Michael J.},
-  booktitle = {CVPR}, year = {2019}}
-@article{loper2015smpl,
-  title   = {SMPL: A Skinned Multi-Person Linear Model},
-  author  = {Loper, Matthew and Mahmood, Naureen and Romero, Javier and Pons-Moll, Gerard and Black, Michael J.},
-  journal = {ACM Transactions on Graphics (Proc. SIGGRAPH Asia)}, year = {2015}}
-@inproceedings{baradel2024multihmr,
-  title     = {Multi-HMR: Multi-Person Whole-Body Human Mesh Recovery in a Single Shot},
-  author    = {Baradel, Fabien and Armando, Matthieu and Galaaoui, Salma and Br{\'e}gier, Romain and Weinzaepfel, Philippe and Rogez, Gr{\'e}gory and Lucas, Thomas},
-  booktitle = {ECCV}, year = {2024}}
-@inproceedings{xiu2023econ,
-  title     = {ECON: Explicit Clothed humans Optimized via Normal integration},
-  author    = {Xiu, Yuliang and Yang, Jinlong and Cao, Xu and Tzionas, Dimitrios and Black, Michael J.},
-  booktitle = {CVPR}, year = {2023}}
-@inproceedings{moon2022clothwild,
-  title     = {3D Clothed Human Reconstruction in the Wild},
-  author    = {Moon, Gyeongsik and Nam, Hyeongjin and Shiratori, Takaaki and Lee, Kyoung Mu},
-  booktitle = {ECCV}, year = {2022}}
-@inproceedings{corona2021smplicit,
-  title     = {SMPLicit: Topology-aware Generative Model for Clothed People},
-  author    = {Corona, Enric and Pumarola, Albert and Aleny{\`a}, Guillem and Pons-Moll, Gerard and Moreno-Noguer, Francesc},
-  booktitle = {CVPR}, year = {2021}}
-@inproceedings{kirillov2023sam,
-  title     = {Segment Anything},
-  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
-  booktitle = {ICCV}, year = {2023}}
-@inproceedings{xie2021segformer,
-  title     = {SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
-  author    = {Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M. and Luo, Ping},
-  booktitle = {NeurIPS}, year = {2021}}
-@inproceedings{shen2021dmtet,
-  title     = {Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis},
-  author    = {Shen, Tianchang and Gao, Jun and Yin, Kangxue and Liu, Ming-Yu and Fidler, Sanja},
-  booktitle = {NeurIPS}, year = {2021}}
-@inproceedings{poole2023dreamfusion,
-  title     = {DreamFusion: Text-to-3D using 2D Diffusion},
-  author    = {Poole, Ben and Jain, Ajay and Barron, Jonathan T. and Mildenhall, Ben},
-  booktitle = {ICLR}, year = {2023}}
-@inproceedings{rombach2022ldm,
-  title     = {High-Resolution Image Synthesis with Latent Diffusion Models},
-  author    = {Rombach, Robin and Blattmann, Andreas and Lorenz, Dominik and Esser, Patrick and Ommer, Bj{\"o}rn},
-  booktitle = {CVPR}, year = {2022}}
-@inproceedings{zhang2023controlnet,
-  title     = {Adding Conditional Control to Text-to-Image Diffusion Models},
-  author    = {Zhang, Lvmin and Rao, Anyi and Agrawala, Maneesh},
-  booktitle = {ICCV}, year = {2023}}
-@inproceedings{li2022blip,
-  title     = {BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation},
-  author    = {Li, Junnan and Li, Dongxu and Xiong, Caiming and Hoi, Steven},
-  booktitle = {ICML}, year = {2022}}
-@inproceedings{khirodkar2024sapiens,
-  title     = {Sapiens: Foundation for Human Vision Models},
-  author    = {Khirodkar, Rawal and Bagautdinov, Timur and Martinez, Julieta and Zhaoen, Su and James, Austin and Selednik, Peter and Anderson, Stuart and Saito, Shunsuke},
-  booktitle = {ECCV}, year = {2024}}
-@inproceedings{zhang2018lpips,
-  title     = {The Unreasonable Effectiveness of Deep Features as a Perceptual Metric},
-  author    = {Zhang, Richard and Isola, Phillip and Efros, Alexei A. and Shechtman, Eli and Wang, Oliver},
-  booktitle = {CVPR}, year = {2018}}
-@article{mueller2022instantngp,
-  title   = {Instant Neural Graphics Primitives with a Multiresolution Hash Encoding},
-  author  = {M{\"u}ller, Thomas and Evans, Alex and Schied, Christoph and Keller, Alexander},
-  journal = {ACM Transactions on Graphics (Proc. SIGGRAPH)}, year = {2022}}
-@article{laine2020nvdiffrast,
-  title   = {Modular Primitives for High-Performance Differentiable Rendering},
-  author  = {Laine, Samuli and Hellsten, Janne and Karras, Tero and Seol, Yeongho and Lehtinen, Jaakko and Aila, Timo},
-  journal = {ACM Transactions on Graphics (Proc. SIGGRAPH Asia)}, year = {2020}}
-```
+DeClotH [1] and the works this rebuild uses:
+
+1. Hyeongjin Nam, Donghwan Kim, Jeongtaek Oh et al. [DeClotH: Decomposable 3D Cloth and Human Body Reconstruction from a Single Image](https://hygenie1228.github.io/DeClotH/). _CVPR_, 2025.
+2. Georgios Pavlakos, Vasileios Choutas, Nima Ghorbani et al. [Expressive Body Capture: 3D Hands, Face, and Body from a Single Image](https://smpl-x.is.tue.mpg.de). _CVPR_, 2019.
+3. Matthew Loper, Naureen Mahmood, Javier Romero et al. [SMPL: A Skinned Multi-Person Linear Model](https://smpl.is.tue.mpg.de). _ACM Transactions on Graphics (SIGGRAPH Asia)_, 2015.
+4. Fabien Baradel, Matthieu Armando, Salma Galaaoui et al. [Multi-HMR: Multi-Person Whole-Body Human Mesh Recovery in a Single Shot](https://github.com/naver/multi-hmr). _ECCV_, 2024.
+5. Yuliang Xiu, Jinlong Yang, Xu Cao et al. [ECON: Explicit Clothed humans Optimized via Normal integration](https://github.com/YuliangXiu/ECON). _CVPR_, 2023.
+6. Gyeongsik Moon, Hyeongjin Nam, Takaaki Shiratori et al. [3D Clothed Human Reconstruction in the Wild](https://github.com/hygenie1228/ClothWild_RELEASE). _ECCV_, 2022.
+7. Enric Corona, Albert Pumarola, Guillem Alenyà et al. [SMPLicit: Topology-aware Generative Model for Clothed People](https://github.com/enriccorona/SMPLicit). _CVPR_, 2021.
+8. Alexander Kirillov, Eric Mintun, Nikhila Ravi et al. [Segment Anything](https://github.com/facebookresearch/segment-anything). _ICCV_, 2023.
+9. Enze Xie, Wenhai Wang, Zhiding Yu et al. [SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers](https://github.com/NVlabs/SegFormer). _NeurIPS_, 2021.
+10. Tianchang Shen, Jun Gao, Kangxue Yin et al. [Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis](https://nv-tlabs.github.io/DMTet/). _NeurIPS_, 2021.
+11. Ben Poole, Ajay Jain, Jonathan T. Barron et al. [DreamFusion: Text-to-3D using 2D Diffusion](https://dreamfusion3d.github.io). _ICLR_, 2023.
+12. Robin Rombach, Andreas Blattmann, Dominik Lorenz et al. [High-Resolution Image Synthesis with Latent Diffusion Models](https://github.com/CompVis/latent-diffusion). _CVPR_, 2022.
+13. Lvmin Zhang, Anyi Rao and Maneesh Agrawala. [Adding Conditional Control to Text-to-Image Diffusion Models](https://github.com/lllyasviel/ControlNet). _ICCV_, 2023.
+14. Junnan Li, Dongxu Li, Caiming Xiong et al. [BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation](https://github.com/salesforce/BLIP). _ICML_, 2022.
+15. Rawal Khirodkar, Timur Bagautdinov, Julieta Martinez et al. [Sapiens: Foundation for Human Vision Models](https://github.com/facebookresearch/sapiens). _ECCV_, 2024.
+16. Richard Zhang, Phillip Isola, Alexei A. Efros et al. [The Unreasonable Effectiveness of Deep Features as a Perceptual Metric](https://github.com/richzhang/PerceptualSimilarity). _CVPR_, 2018.
+17. Thomas Müller, Alex Evans, Christoph Schied et al. [Instant Neural Graphics Primitives with a Multiresolution Hash Encoding](https://github.com/NVlabs/instant-ngp). _ACM Transactions on Graphics (SIGGRAPH)_, 2022.
+18. Samuli Laine, Janne Hellsten, Tero Karras et al. [Modular Primitives for High-Performance Differentiable Rendering](https://github.com/NVlabs/nvdiffrast). _ACM Transactions on Graphics (SIGGRAPH Asia)_, 2020.

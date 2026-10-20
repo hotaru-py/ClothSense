@@ -1,0 +1,28 @@
+# declo (DeClotH rebuild). Python 3.10, CUDA build of PyTorch first, e.g.
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+# then: pip install -r requirements.txt
+numpy
+scipy
+pillow
+opencv-python
+matplotlib
+trimesh
+smplx                 # SMPL-X / SMPL layers
+roma                  # Multi-HMR (work/multi-hmr)
+einops                # Multi-HMR
+pyrender              # Multi-HMR's utils import it
+transformers          # SegFormer parsing, BLIP captions
+segment-anything      # SAM ViT-H (models/sam/sam_vit_h_4b8939.pth)
+diffusers             # SD 1.5 + ControlNet (SDS), TAESD
+accelerate
+lpips                 # texture stage
+scikit-image          # ClothWild / SMPLicit marching cubes
+torchgeometry         # ClothWild
+huggingface_hub
+requests              # tools/fetch_mpi.py
+gdown                 # ClothWild weights (Google Drive)
+# optional
+playwright            # browser test (work/declo/test_webapp.py); then: playwright install msedge
+nbclient              # headless notebook runs
+nbformat
+# nvdiffrast          # optional renderer: CUDA Toolkit 12.6 + MSVC v143, then DECLO_RENDER=nvdiffrast (see README)

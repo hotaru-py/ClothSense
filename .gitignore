@@ -1,0 +1,10 @@
+# local only: registration-gated models, scratch / outputs / this machine's reconstructions, test photos + papers,
+# the archived v1 (1.3 GB, contains photos)
+/models/
+/work/
+/assets/
+/bak/
+.venv/
+__pycache__/
+*.pt
+*.pdf

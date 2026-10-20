@@ -1,16 +1,15 @@
 # ClothSense: separate 3D cloth and body from one photo
 
-declo rebuilds **DeClotH** (Nam et al., CVPR 2025) from released parts. You take a full-body photo, and about
+ClothSense rebuilds **DeClotH** (Nam et al., CVPR 2025) from released parts. You take a full-body photo, and about
 15 minutes later on a laptop GPU you get two meshes: a 3D **body** and a separate 3D **garment**. Both are refined
 with diffusion guidance and textured from the photo. Because cloth and body are separate, garments reconstructed
 from one person can be tried on another.
 
 Course project for **CS4661 - Modern 3D Vision Techniques**, by
-[hotaru-py](https://github.com/hotaru-py), [Pranav-B-0071](https://github.com/Pranav-B-0071) and
-[sachinsr11](https://github.com/sachinsr11).
+[Prajesh Raam](https://github.com/hotaru-py), [Pranav B](https://github.com/Pranav-B-0071) and
+[Sachin S R](https://github.com/sachinsr11).
 
-DeClotH did not release code or its trained diffusion models, so each step of the paper is rebuilt here from
-public components. Where a component is missing, we use a stand-in; each one is listed below.
+DeClotH did not release code or its trained diffusion models, so each step of the paper is rebuilt here from public components. Where a component is missing, we use a stand-in; each one is listed below.
 
 ## What the demo does
 
@@ -20,6 +19,74 @@ public components. Where a component is missing, we use a stand-in; each one is 
    textured result appears.
 3. **Swap garments.** Clothing options show a thumbnail of each garment: the two example garments shipped in
    `garments/`, plus every reconstruction finished on your machine. Picking one fits it onto your body.
+
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph CLIENT["Browser · webapp/"]
+        CAM["capture.js + pose.js<br/>guided camera (MediaPipe)"]
+        VIEW["declo.js<br/>three.js viewer + clothing options"]
+        API["api.js"]
+    end
+
+    SRV["webapp/serve.py + declo_service.py<br/>job API, one GPU job at a time"]
+    CLI["tools/run_full.py<br/>headless run"]
+
+    subgraph PRE["(1) Preprocessing · declo/prep.py · ~4.6 GB, freed before the optimisation"]
+        PARSE["parsing<br/>SegFormer person + cloth labels"]
+        FRAME["frame<br/>512 px work crop"]
+        HMR["hmr / templates<br/>Multi-HMR → SMPL-X, auto-FOV, align to mask"]
+        SAM["masks<br/>SAM ViT-H: human, cloth, upper, lower"]
+        NRM["normals<br/>ECON front + back (Sapiens fallback)"]
+        CAPT["captions<br/>BLIP prompts"]
+        CW["templates · ClothWild + SMPLicit<br/>opt-in: DECLO_CLOTHWILD=1"]
+        PARSE --> FRAME --> HMR --> SAM --> NRM
+        SAM --> CAPT
+        HMR -.-> CW
+    end
+
+    PREP[("prep dict<br/>rgb, masks, camera K, SMPL-X body,<br/>normal maps, captions")]
+
+    subgraph GEO["(2)-(7) Geometry stage · recon.Reconstruction · 150 steps"]
+        DMT["dmtet<br/>hash-grid DMTets: body + tear-free cloth shell"]
+        SKIN["skinning<br/>SMPL-X LBS, canonical A-pose → photo pose"]
+        REN["render / raster / cameras<br/>PyTorch renderer, nvdiffrast optional"]
+        LOSS["losses<br/>silhouette, template, normal,<br/>penetration, sdf_reg, keep"]
+        GUIDE["guidance + sds · SD 1.5 + TAESD<br/>ControlNet seg (cloth), OpenPose (human)"]
+        DMT --> SKIN --> REN
+        REN --> LOSS
+        REN --> GUIDE
+        LOSS -- "gradients" --> DMT
+        GUIDE -- "SDS gradients" --> DMT
+    end
+
+    subgraph TEX["(8) Texture stage · texture.TextureStage · 200 steps"]
+        COL["colour fields per mesh<br/>L2 + LPIPS vs photo, SDS at CFG 15,<br/>per-garment colour anchors"]
+    end
+
+    subgraph OUT["(9) Output · declo/swap.py, declo/export.py"]
+        GLB["cloth.glb + body.glb"]
+        BUN[("work/declo/library/<br/>full bundles (with photo, local only)")]
+        GAR[("garments/<br/>garment-only files (shipped)")]
+        TRY["try_on<br/>shape transfer (k-NN) + target skinning"]
+    end
+
+    CAM --> API
+    VIEW --> API
+    API -- "POST /api/jobs (photo)" --> SRV
+    SRV -- "job state, draft GLBs every 25 steps,<br/>final + try-on GLBs" --> API
+    SRV --> PRE
+    CLI --> PRE
+    PRE --> PREP --> GEO --> TEX --> OUT
+    BUN --> TRY
+    GAR --> TRY
+    BUN -. "export_garment" .-> GAR
+```
+
+The two GPU-heavy halves never share the 8 GB card: the preprocessing models run first and are freed, then the
+diffusion stack (SD 1.5 + two ControlNets, ~3.8 GB) is loaded for the geometry and texture stages. Inside
+preprocessing, ECON is parked in system RAM until SAM is done. Each box in the diagram is one module in `declo/`.
 
 ## How it works
 
